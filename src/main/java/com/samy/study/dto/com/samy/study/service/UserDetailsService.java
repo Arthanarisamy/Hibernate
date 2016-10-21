@@ -5,6 +5,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.util.Date;
+
 /**
  * Created by arthanarisamya on 20/10/16.
  */
@@ -29,6 +31,9 @@ public class UserDetailsService {
         UserDetails userDetails = new UserDetails();
         userDetails.setUserId(1504);
         userDetails.setUserName("Samy A");
+        userDetails.setAddress("Address");
+        userDetails.setDesignation("Designation");
+        userDetails.setJoinedDate(new Date());
         return userDetails;
     }
 }
