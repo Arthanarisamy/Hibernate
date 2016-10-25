@@ -1,5 +1,6 @@
 package com.samy.study.dto.com.samy.study.service;
 
+import com.samy.study.dto.Address;
 import com.samy.study.dto.UserDetails;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -31,7 +32,20 @@ public class UserDetailsService {
         UserDetails userDetails = new UserDetails();
         userDetails.setUserId(1504);
         userDetails.setUserName("Samy A");
-        userDetails.setAddress("Address");
+        // Home Address
+        Address address = new Address();
+        address.setCity("Bangalore");
+        address.setPincode("560034");
+        address.setState("Karnataka");
+        address.setStreet("5th Cross");
+        userDetails.setHomeAddress(address); // Home Address
+        // Office  Address
+        address = new Address();
+        address.setCity("Bangalore");
+        address.setPincode("560034");
+        address.setState("Karnataka");
+        address.setStreet("100 Feet Road");
+        userDetails.setOfficeAddress(address);
         userDetails.setDesignation("Designation");
         userDetails.setJoinedDate(new Date());
         return userDetails;

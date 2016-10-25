@@ -17,12 +17,21 @@ public class UserDetails implements Serializable {
     @Temporal(TemporalType.DATE)
     @Column(name = "JOINED_DATE")
     private Date joinedDate;
-    @Column(name = "ADDRESS")
-    private String address;
+    @Embedded
+    private Address homeAddress;
     @Column(name = "DESIGNATION")
     private String designation;
     @Column(name = "DESCRIPTION")
     private String description;
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "street", column = @Column(name = "OFFICE_STREET_NAME")),
+            @AttributeOverride(name = "city", column = @Column(name = "OFFICE_CITY_NAME")),
+            @AttributeOverride(name = "state", column = @Column(name = "OFFICE_STATE_NAME")),
+            @AttributeOverride(name = "pincode", column = @Column(name = "OFFICE_PINCODE"))
+    })
+    private Address officeAddress;
+
 
     public int getUserId() {
         return userId;
@@ -48,12 +57,20 @@ public class UserDetails implements Serializable {
         this.joinedDate = joinedDate;
     }
 
-    public String getAddress() {
-        return address;
+    public Address getHomeAddress() {
+        return homeAddress;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setHomeAddress(Address homeAddress) {
+        this.homeAddress = homeAddress;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getDesignation() {
@@ -64,14 +81,24 @@ public class UserDetails implements Serializable {
         this.designation = designation;
     }
 
+    public Address getOfficeAddress() {
+        return officeAddress;
+    }
+
+    public void setOfficeAddress(Address officeAddress) {
+        this.officeAddress = officeAddress;
+    }
+
     @Override
     public String toString() {
         return "UserDetails{" +
                 "userId=" + userId +
                 ", userName='" + userName + '\'' +
                 ", joinedDate=" + joinedDate +
-                ", address='" + address + '\'' +
+                ", homeAddress=" + homeAddress +
                 ", designation='" + designation + '\'' +
+                ", description='" + description + '\'' +
+                ", officeAddress=" + officeAddress +
                 '}';
     }
 }
