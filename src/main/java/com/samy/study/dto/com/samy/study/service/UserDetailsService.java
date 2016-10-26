@@ -38,14 +38,14 @@ public class UserDetailsService {
         address.setPincode("560034");
         address.setState("Karnataka");
         address.setStreet("5th Cross");
-        userDetails.setHomeAddress(address); // Home Address
+        userDetails.getAddresses().add(address);
         // Office  Address
         address = new Address();
         address.setCity("Bangalore");
         address.setPincode("560034");
         address.setState("Karnataka");
         address.setStreet("100 Feet Road");
-        userDetails.setOfficeAddress(address);
+        userDetails.getAddresses().add(address);
         userDetails.setDesignation("Designation");
         userDetails.setJoinedDate(new Date());
         return userDetails;
