@@ -36,10 +36,10 @@ public class UserDetails implements Serializable {
             @AttributeOverride(name = "pincode", column = @Column(name = "OFFICE_PINCODE"))
     })
     private Address officeAddress;*/
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @JoinTable(name = "TB_USER_ADDRESS", joinColumns = @JoinColumn(name = "USER_ID"))
-    @GenericGenerator(name = "Hib-Gen", strategy = "sequence")
-    @CollectionId(type = @Type(type = "int"), columns = @Column(name = "ADDRESS_ID"), generator = "Hib-Gen")
+//    @GenericGenerator(name = "Hib-Gen", strategy = "sequence")
+//    @CollectionId(type = @Type(type = "int"), columns = @Column(name = "ADDRESS_ID"), generator = "Hib-Gen")
     private Collection<Address> addresses = new ArrayList<Address>();
 
     public int getUserId() {

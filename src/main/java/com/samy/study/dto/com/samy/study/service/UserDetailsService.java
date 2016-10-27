@@ -24,6 +24,13 @@ public class UserDetailsService {
         session.getTransaction().commit();
         session.close();
 
+        // Reading the value from DB
+        session = sessionFactory.openSession();
+        userDetails = null; // Initializing to null
+        userDetails = session.get(UserDetails.class, 1504);
+        session.close();
+        System.out.println("UserDetails read -:" + userDetails);
+//        System.out.println("Addresses -:" + userDetails.getAddresses());
         sessionFactory.close();
         System.out.println("Done.......");
     }
