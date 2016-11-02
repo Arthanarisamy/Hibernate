@@ -11,7 +11,8 @@ import java.util.*;
 /**
  * Created by arthanarisamya on 19/10/16.
  */
-@Entity(name = "TB_USER_DETAILS")
+@Entity
+@Table(name = "TB_USER_DETAILS")
 public class UserDetails implements Serializable {
     @Id
     @Column(name = "USER_ID")
@@ -26,21 +27,9 @@ public class UserDetails implements Serializable {
     private String designation;
     @Column(name = "DESCRIPTION")
     private String description;
-    /*@Embedded
-    private Address homeAddress;
-    @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name = "street", column = @Column(name = "OFFICE_STREET_NAME")),
-            @AttributeOverride(name = "city", column = @Column(name = "OFFICE_CITY_NAME")),
-            @AttributeOverride(name = "state", column = @Column(name = "OFFICE_STATE_NAME")),
-            @AttributeOverride(name = "pincode", column = @Column(name = "OFFICE_PINCODE"))
-    })
-    private Address officeAddress;*/
-    @ElementCollection(fetch = FetchType.EAGER)
-    @JoinTable(name = "TB_USER_ADDRESS", joinColumns = @JoinColumn(name = "USER_ID"))
-//    @GenericGenerator(name = "Hib-Gen", strategy = "sequence")
-//    @CollectionId(type = @Type(type = "int"), columns = @Column(name = "ADDRESS_ID"), generator = "Hib-Gen")
-    private Collection<Address> addresses = new ArrayList<Address>();
+    @OneToOne
+    @JoinColumn(name = "VEHILCE_ID")
+    private Vehicle vehicle;
 
     public int getUserId() {
         return userId;
@@ -82,12 +71,11 @@ public class UserDetails implements Serializable {
         this.designation = designation;
     }
 
-    public Collection<Address> getAddresses() {
-        return addresses;
+    public Vehicle getVehicle() {
+        return vehicle;
     }
-
-    public void setAddresses(Collection<Address> addresses) {
-        this.addresses = addresses;
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 
     @Override
@@ -98,7 +86,10 @@ public class UserDetails implements Serializable {
                 ", joinedDate=" + joinedDate +
                 ", designation='" + designation + '\'' +
                 ", description='" + description + '\'' +
-                ", addresses=" + addresses +
+                ", vehicle=" + vehicle +
                 '}';
     }
+
+
+
 }

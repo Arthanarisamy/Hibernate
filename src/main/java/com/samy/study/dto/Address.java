@@ -11,7 +11,6 @@ import java.io.Serializable;
  */
 @Embeddable
 //@Entity(name = "TB_USER_ADDRESS")
-@Table
 public class Address implements Serializable{
     @Column(name = "STREET_NAME")
     String street;

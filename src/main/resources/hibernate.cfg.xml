@@ -10,5 +10,6 @@
         <property name="hibernate.format_sql">true</property>
         <property name="hibernate.cache.use_second_level_cache">false</property>
         <mapping class="com.samy.study.dto.UserDetails"/>
+        <mapping class="com.samy.study.dto.Vehicle"/>
     </session-factory>
 </hibernate-configuration>

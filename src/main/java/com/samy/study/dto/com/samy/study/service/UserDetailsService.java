@@ -2,6 +2,7 @@ package com.samy.study.dto.com.samy.study.service;
 
 import com.samy.study.dto.Address;
 import com.samy.study.dto.UserDetails;
+import com.samy.study.dto.Vehicle;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -19,18 +20,18 @@ public class UserDetailsService {
         Session session = sessionFactory.openSession();
         session.getTransaction().begin();
         UserDetails userDetails = createUserDetails();
-
+        Vehicle vehicle = createVehicleDetails();
+        userDetails.setVehicle(vehicle);
         session.save(userDetails);
+        session.save(vehicle);
         session.getTransaction().commit();
         session.close();
 
         // Reading the value from DB
-        session = sessionFactory.openSession();
+//        session = sessionFactory.openSession();
         userDetails = null; // Initializing to null
-        userDetails = session.get(UserDetails.class, 1504);
-        session.close();
-        System.out.println("UserDetails read -:" + userDetails);
-//        System.out.println("Addresses -:" + userDetails.getAddresses());
+//        userDetails = session.get(UserDetails.class, 1504);
+//        session.close();
         sessionFactory.close();
         System.out.println("Done.......");
     }
@@ -39,22 +40,15 @@ public class UserDetailsService {
         UserDetails userDetails = new UserDetails();
         userDetails.setUserId(1504);
         userDetails.setUserName("Samy A");
-        // Home Address
-        Address address = new Address();
-        address.setCity("Bangalore");
-        address.setPincode("560034");
-        address.setState("Karnataka");
-        address.setStreet("5th Cross");
-        userDetails.getAddresses().add(address);
-        // Office  Address
-        address = new Address();
-        address.setCity("Bangalore");
-        address.setPincode("560034");
-        address.setState("Karnataka");
-        address.setStreet("100 Feet Road");
-        userDetails.getAddresses().add(address);
         userDetails.setDesignation("Designation");
         userDetails.setJoinedDate(new Date());
+//        userDetails.setVehicle(createVehicleDetails());
         return userDetails;
+    }
+
+    public static Vehicle createVehicleDetails() {
+        Vehicle vehicle = new Vehicle();
+        vehicle.setVehicleName("Bike");
+        return vehicle;
     }
 }
