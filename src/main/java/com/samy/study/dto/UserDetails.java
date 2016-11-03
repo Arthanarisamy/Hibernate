@@ -27,9 +27,9 @@ public class UserDetails implements Serializable {
     private String designation;
     @Column(name = "DESCRIPTION")
     private String description;
-    @OneToOne
-    @JoinColumn(name = "VEHILCE_ID")
-    private Vehicle vehicle;
+    @OneToMany
+    @JoinTable(name = "TB_USER_VEHICLE", joinColumns = @JoinColumn(name = "USER_ID"),inverseJoinColumns =@JoinColumn(name = "VEHICLE_ID"))
+    private Collection<Vehicle> vehicles = new ArrayList<Vehicle>();
 
     public int getUserId() {
         return userId;
@@ -71,11 +71,12 @@ public class UserDetails implements Serializable {
         this.designation = designation;
     }
 
-    public Vehicle getVehicle() {
-        return vehicle;
+    public Collection<Vehicle> getVehicles() {
+        return vehicles;
     }
-    public void setVehicle(Vehicle vehicle) {
-        this.vehicle = vehicle;
+
+    public void setVehicles(Collection<Vehicle> vehicles) {
+        this.vehicles = vehicles;
     }
 
     @Override
@@ -86,10 +87,9 @@ public class UserDetails implements Serializable {
                 ", joinedDate=" + joinedDate +
                 ", designation='" + designation + '\'' +
                 ", description='" + description + '\'' +
-                ", vehicle=" + vehicle +
+                ", vehicles=" + vehicles +
                 '}';
     }
-
 
 
 }

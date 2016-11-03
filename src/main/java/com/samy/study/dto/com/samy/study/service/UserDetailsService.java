@@ -20,10 +20,15 @@ public class UserDetailsService {
         Session session = sessionFactory.openSession();
         session.getTransaction().begin();
         UserDetails userDetails = createUserDetails();
-        Vehicle vehicle = createVehicleDetails();
-        userDetails.setVehicle(vehicle);
+        Vehicle vehicle = createVehicleDetails("Bike");
+        vehicle.setUser(userDetails);
+        Vehicle vehicle2 = createVehicleDetails("Jeep");
+        vehicle2.setUser(userDetails);
+        userDetails.getVehicles().add(vehicle);
+        userDetails.getVehicles().add(vehicle2);
         session.save(userDetails);
         session.save(vehicle);
+        session.save(vehicle2);
         session.getTransaction().commit();
         session.close();
 
@@ -46,9 +51,9 @@ public class UserDetailsService {
         return userDetails;
     }
 
-    public static Vehicle createVehicleDetails() {
+    public static Vehicle createVehicleDetails(String vehicleName) {
         Vehicle vehicle = new Vehicle();
-        vehicle.setVehicleName("Bike");
+        vehicle.setVehicleName(vehicleName);
         return vehicle;
     }
 }
