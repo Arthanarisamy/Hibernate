@@ -18,8 +18,6 @@ public class Vehicle implements Serializable {
 //    @GenericGenerator(name = "vehicle-id",strategy = "sequence")
     private int vehicleId;
     private String vehicleName;
-    @ManyToMany(mappedBy = "vehicles")
-    private Collection<UserDetails> userDetails = new ArrayList<UserDetails>();
 
     public int getVehicleId() {
         return vehicleId;
@@ -35,14 +33,6 @@ public class Vehicle implements Serializable {
 
     public void setVehicleName(String vehicleName) {
         this.vehicleName = vehicleName;
-    }
-
-    public Collection<UserDetails> getUserDetails() {
-        return userDetails;
-    }
-
-    public void setUserDetails(Collection<UserDetails> userDetails) {
-        this.userDetails = userDetails;
     }
 
     @Override

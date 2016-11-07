@@ -21,14 +21,14 @@ public class UserDetailsService {
         session.getTransaction().begin();
         UserDetails userDetails = createUserDetails();
         Vehicle vehicle = createVehicleDetails("Bike");
-        vehicle.getUserDetails().add(userDetails);
+//        vehicle.setUserDetail(userDetails);
         Vehicle vehicle2 = createVehicleDetails("Jeep");
-        vehicle2.getUserDetails().add(userDetails);
+//        vehicle2.setUserDetail(userDetails);
         userDetails.getVehicles().add(vehicle);
         userDetails.getVehicles().add(vehicle2);
-        session.save(userDetails);
-        session.save(vehicle);
-        session.save(vehicle2);
+        session.persist(userDetails);
+//        session.save(vehicle);
+//        session.save(vehicle2);
         session.getTransaction().commit();
         session.close();
 
