@@ -27,8 +27,8 @@ public class UserDetails implements Serializable {
     private String designation;
     @Column(name = "DESCRIPTION")
     private String description;
-    @OneToMany(mappedBy = "user")
-//    @JoinTable(name = "TB_USER_VEHICLE", joinColumns = @JoinColumn(name = "USER_ID"),inverseJoinColumns =@JoinColumn(name = "VEHICLE_ID"))
+    @ManyToMany
+    @JoinTable(name = "TB_USER_VEHICLE", joinColumns = @JoinColumn(name = "USER_ID"),inverseJoinColumns =@JoinColumn(name = "VEHICLE_ID"))
     private Collection<Vehicle> vehicles = new ArrayList<Vehicle>();
 
     public int getUserId() {

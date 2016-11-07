@@ -4,6 +4,8 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * Created by arthanarisamya on 27/10/16.
@@ -16,9 +18,8 @@ public class Vehicle implements Serializable {
 //    @GenericGenerator(name = "vehicle-id",strategy = "sequence")
     private int vehicleId;
     private String vehicleName;
-    @ManyToOne
-    @JoinColumn(name = "USER_ID")
-    private UserDetails user;
+    @ManyToMany(mappedBy = "vehicles")
+    private Collection<UserDetails> userDetails = new ArrayList<UserDetails>();
 
     public int getVehicleId() {
         return vehicleId;
@@ -36,12 +37,12 @@ public class Vehicle implements Serializable {
         this.vehicleName = vehicleName;
     }
 
-    public UserDetails getUser() {
-        return user;
+    public Collection<UserDetails> getUserDetails() {
+        return userDetails;
     }
 
-    public void setUser(UserDetails user) {
-        this.user = user;
+    public void setUserDetails(Collection<UserDetails> userDetails) {
+        this.userDetails = userDetails;
     }
 
     @Override

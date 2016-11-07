@@ -21,9 +21,9 @@ public class UserDetailsService {
         session.getTransaction().begin();
         UserDetails userDetails = createUserDetails();
         Vehicle vehicle = createVehicleDetails("Bike");
-        vehicle.setUser(userDetails);
+        vehicle.getUserDetails().add(userDetails);
         Vehicle vehicle2 = createVehicleDetails("Jeep");
-        vehicle2.setUser(userDetails);
+        vehicle2.getUserDetails().add(userDetails);
         userDetails.getVehicles().add(vehicle);
         userDetails.getVehicles().add(vehicle2);
         session.save(userDetails);
