@@ -6,8 +6,7 @@ import javax.persistence.Entity;
 /**
  * Created by arthanarisamya on 8/11/16.
  */
-@Entity
-@DiscriminatorValue(value = "BIKE")
+@Entity(name = "TB_TWO_WHEELER")
 public class TwoWheeler extends Vehicle {
     private String steeringHandle;
 
