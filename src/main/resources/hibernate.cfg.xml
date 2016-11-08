@@ -11,5 +11,7 @@
         <property name="hibernate.cache.use_second_level_cache">false</property>
         <mapping class="com.samy.study.dto.UserDetails"/>
         <mapping class="com.samy.study.dto.Vehicle"/>
+        <mapping class="com.samy.study.dto.TwoWheeler"/>
+        <mapping class="com.samy.study.dto.FourWheeler"/>
     </session-factory>
 </hibernate-configuration>
