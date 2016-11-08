@@ -12,7 +12,9 @@ import java.util.Collection;
  */
 @Entity
 @Table(name = "TB_VEHICLES")
-
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "VEHICLE_TYPE", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorValue(value = "VEHILCE")
 public class Vehicle implements Serializable {
     @Id
     @GeneratedValue
