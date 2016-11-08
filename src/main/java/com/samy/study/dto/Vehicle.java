@@ -12,6 +12,7 @@ import java.util.Collection;
  */
 @Entity
 @Table(name = "TB_VEHICLES")
+
 public class Vehicle implements Serializable {
     @Id
     @GeneratedValue
