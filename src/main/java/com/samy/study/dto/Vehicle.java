@@ -12,7 +12,7 @@ import java.util.Collection;
  */
 @Entity
 @Table(name = "TB_VEHICLES")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Vehicle implements Serializable {
     @Id
     @GeneratedValue
