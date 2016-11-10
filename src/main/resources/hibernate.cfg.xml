@@ -5,7 +5,7 @@
         <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/hibernate</property>
         <property name="hibernate.connection.username">postgres</property>
         <property name="hibernate.connection.password">postgres</property>
-        <property name="hibernate.hbm2ddl.auto">create</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.format_sql">false</property>
         <property name="hibernate.cache.use_second_level_cache">false</property>
@@ -13,5 +13,6 @@
         <mapping class="com.samy.study.dto.Vehicle"/>
         <mapping class="com.samy.study.dto.TwoWheeler"/>
         <mapping class="com.samy.study.dto.FourWheeler"/>
+        <mapping class="com.samy.study.dto.EmployeeDetails"/>
     </session-factory>
 </hibernate-configuration>
